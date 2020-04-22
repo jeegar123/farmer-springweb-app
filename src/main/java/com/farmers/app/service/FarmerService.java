@@ -15,6 +15,6 @@ public interface FarmerService {
 
     List<Farmer> getAllFarmers();
 
-    Farmer getFarmerById(long id);
+    Farmer getFarmerById(int id);
 
 }

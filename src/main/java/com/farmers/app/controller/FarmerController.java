@@ -16,43 +16,56 @@ public class FarmerController {
 
     private final FarmerServiceImpl farmerService;
 
+//    dependcy injection using contructor
     public FarmerController(FarmerServiceImpl farmerService) {
         this.farmerService = farmerService;
     }
 
-
+//    call default page index.jsp
     @RequestMapping("/")
     public String index() {
         return "index";
     }
 
-
+//    call register page for farmer
     @RequestMapping("/register")
     public String registerFarmer() {
         return "registerFarmer";
     }
 
+//    save farmer rto database
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String saveFarmer(@ModelAttribute("farmer") Farmer farmer, ModelMap modelMap) {
         farmerService.createFarmer(farmer);
         modelMap.addAttribute("msg", "farmer is successfully saved with username:" + farmer.getUsername());
-        return "index";
+        return "registerFarmer";
     }
 
+//    delete farmer
     @RequestMapping("/delete")
-    public String saveFarmer(@RequestParam("id") long id, ModelMap modelMap) {
+    public String saveFarmer(@RequestParam("id") int id, ModelMap modelMap) {
         Farmer farmer = farmerService.getFarmerById(id);
         farmerService.deleteFarmer(farmer);
         modelMap.addAttribute("msg", "farmer is delete successfully");
         return "index";
     }
 
-    @RequestMapping("/update")
+//    update farmer details
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
     public String updateFarmer(@ModelAttribute("farmer") Farmer farmer, ModelMap modelMap) {
         farmerService.createFarmer(farmer);
         modelMap.addAttribute("msg", "farmer is successfully update with username:" + farmer.getUsername());
         return "index";
     }
+
+//    call update page with id attribute
+    @RequestMapping("/updatePage")
+    public String sayUpdateFarmer(@ModelAttribute("id") int id,ModelMap modelMap){
+        Farmer farmer = farmerService.getFarmerById(id);
+        modelMap.addAttribute("farmer",farmer);
+        return "update";
+    }
+
 
     @RequestMapping("/list")
     public String getFarmerList(ModelMap modelMap) {

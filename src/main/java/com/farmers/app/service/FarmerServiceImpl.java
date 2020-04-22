@@ -38,7 +38,7 @@ public class FarmerServiceImpl implements FarmerService {
     }
 
     @Override
-    public Farmer getFarmerById(long id) {
+    public Farmer getFarmerById(int id) {
         return farmerRespository.getOne(id);
     }
 }
