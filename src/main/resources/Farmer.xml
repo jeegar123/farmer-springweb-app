@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="com.farmers.app.model.Farmer">
+        <table name="farmer" schema="farmersdb" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="11"/>
+            </id>
+            <basic name="name">
+                <column name="name" length="30"/>
+            </basic>
+            <basic name="username">
+                <column name="username" length="30"/>
+            </basic>
+            <basic name="income">
+                <column name="income" precision="-1"/>
+            </basic>
+            <basic name="password">
+                <column name="password" length="10"/>
+            </basic>
+            <basic name="mobileno">
+                <column name="mobileno" length="10"/>
+            </basic>
+            <basic name="address">
+                <column name="address" length="100"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>
